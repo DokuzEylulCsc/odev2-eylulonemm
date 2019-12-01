@@ -1,0 +1,194 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Collections;
+
+namespace bbgodevideneme2
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            textBox2.Clear();
+
+
+            int sayi = Int16.Parse(textBox1.Text);
+
+
+            int birler_basamagi = 0;
+            int onlar_basamagi = 0;
+            int yuzler_basamagi = 0;
+            int binler_basamagi = 0;
+
+            if (sayi < 10)
+                birler_basamagi = sayi;
+
+            if (sayi > 9 && sayi < 100)
+            {
+                onlar_basamagi = sayi / 10;
+                birler_basamagi = sayi - (onlar_basamagi * 10);
+            }
+
+            if (sayi > 99 && sayi < 1000)
+            {
+                yuzler_basamagi = sayi / 100;
+                onlar_basamagi = (sayi - (yuzler_basamagi * 100)) / 10;
+                birler_basamagi = sayi - ((yuzler_basamagi * 100) + (onlar_basamagi * 10));
+            }
+
+            if (sayi > 999 && sayi < 10000)
+            {
+
+                binler_basamagi = sayi / 1000;
+                yuzler_basamagi = (sayi - (binler_basamagi * 1000)) / 100;
+                onlar_basamagi = (sayi - ((binler_basamagi * 1000) + (yuzler_basamagi * 100))) / 10;
+                birler_basamagi = sayi % 10;
+
+            }
+            string[] birler = { "",  "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" };
+            string[] onlar = { "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC" };
+            string[] yuzler = { "", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM" };
+            string[] binler = { "", "M", "MM", "MMM" };
+            textBox2.Text += binler[binler_basamagi] + "";
+            textBox2.Text += yuzler[yuzler_basamagi] + "";
+            textBox2.Text += onlar[onlar_basamagi] + "";
+            textBox2.Text += "" + birler[birler_basamagi];
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Hashtable sayilar = new Hashtable();
+
+            sayilar.Add("I", "1");
+
+            sayilar.Add("II", "2");
+
+            sayilar.Add("III", "3");
+
+            sayilar.Add("IV", "4");
+
+            sayilar.Add("V", "5");
+
+            sayilar.Add("VI", "6");
+
+            sayilar.Add("VII", "7");
+
+            sayilar.Add("VIII", "8");
+
+            sayilar.Add("IX", "9");
+
+            sayilar.Add("X", "10");
+
+            sayilar.Add("XX", "20");
+
+            sayilar.Add("XXX", "30");
+
+            sayilar.Add("XL", "40");
+
+            sayilar.Add("L", "50");
+
+            sayilar.Add("LX", "60");
+
+            sayilar.Add("LXX", "70");
+
+            sayilar.Add("LXXX", "80");
+
+            sayilar.Add("XC", "90");
+
+            sayilar.Add("C", "100");
+
+            sayilar.Add("CC", "200");
+
+            sayilar.Add("CCC", "300");
+
+            sayilar.Add("CD", "400");
+
+            sayilar.Add("D", "500");
+
+            sayilar.Add("DC", "600");
+
+            sayilar.Add("DCC", "700");
+
+            sayilar.Add("DCCC", "800");
+
+            sayilar.Add("CM", "900");
+
+            sayilar.Add("M", "1000");
+
+            string girilen = textBox3.Text.ToUpper();
+           
+
+            int sayi = 0;
+
+            for (int a = 0; a< girilen.Length; a++) {
+                if (girilen.Length - a>= 2)
+                {
+                    string deger = girilen[a].ToString() + girilen[a + 1].ToString();
+
+                    if (deger == "IV" || deger == "IX" || deger == "XL" || deger == "CD" || deger == "CM" || deger == "XC")
+                    {
+                        sayi = int.Parse(sayilar[deger].ToString()) + sayi;
+
+                        a++;
+                    }
+                    else
+                    {
+                        sayi = int.Parse(sayilar[girilen[a].ToString()].ToString()) + sayi;
+                    }
+                }
+                else
+                {
+                    sayi = int.Parse(sayilar[girilen[a].ToString()].ToString()) + sayi;
+                }
+            }
+
+            textBox4.Text = Convert.ToString(sayi);
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+            label1.Font = new Font(label1.Font, label1.Font.Style ^ FontStyle.Bold);
+            label1.Font = new Font(label1.Font.FontFamily.Name, 11);
+
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            label2.Font = new Font(label2.Font, label2.Font.Style ^ FontStyle.Bold);
+            label2.Font = new Font(label2.Font.FontFamily.Name, 11);
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            label3.Font = new Font(label3.Font, label3.Font.Style ^ FontStyle.Bold);
+            label3.Font = new Font(label3.Font.FontFamily.Name, 11);
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+            label4.Font = new Font(label4.Font, label4.Font.Style ^ FontStyle.Bold);
+            label4.Font = new Font(label4.Font.FontFamily.Name, 11);
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            this.BackColor = Color.LightSlateGray;
+        }
+    }
+}
