@@ -192,3 +192,9 @@ namespace bbgodevideneme2
         }
     }
 }
+
+  /* REFERENCES
+  *http://csharphelper.com/blog/2016/04/convert-to-and-from-roman-numerals-in-c/
+  *https://www.bilisimkonulari.com/c-roma-rakamini-sayiya-ceviren-program.html
+  *https://www.yazilimbilisim.net/c-sharp/c-console-ile-girilen-sayiyi-roma-rakamina-cevirme/
+  */
